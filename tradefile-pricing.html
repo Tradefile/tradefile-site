@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — TradeFile.ie</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #152336;
+    --navy-light: #1e3450;
+    --orange: #f46b1e;
+    --orange-light: #ff8c42;
+    --white: #f5f0e8;
+    --grey: #8a9bb0;
+    --green-wa: #25D366;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    background: rgba(13, 27, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(244, 107, 30, 0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--orange); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--grey);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--orange);
+    color: var(--navy) !important;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* PAGE HEADER */
+  .page-header {
+    padding: 130px 32px 60px;
+    text-align: center;
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: -150px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(circle, rgba(244, 107, 30, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .page-tag {
+    display: inline-block;
+    background: rgba(244, 107, 30, 0.15);
+    border: 1px solid rgba(244, 107, 30, 0.3);
+    color: var(--orange);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+
+  .page-header h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 6vw, 3.4rem);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 16px;
+    color: var(--white);
+  }
+
+  .page-header p {
+    color: var(--grey);
+    font-size: 1rem;
+    font-weight: 300;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* BILLING LABEL */
+  .billing-labels {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 0 32px 50px;
+    background: var(--navy);
+  }
+
+  .billing-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--grey);
+    font-weight: 500;
+  }
+
+  .billing-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+  }
+
+  .billing-dot.monthly { background: var(--orange); }
+  .billing-dot.yearly { background: var(--green-wa); }
+
+  /* PRICING GRID */
+  .pricing-section {
+    padding: 0 32px 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .tier {
+    margin-bottom: 24px;
+  }
+
+  .tier-label {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 12px;
+    padding-left: 4px;
+  }
+
+  .tier-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .price-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(244, 107, 30, 0.12);
+    border-radius: 14px;
+    padding: 28px 24px;
+    position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .price-card:hover {
+    border-color: rgba(244, 107, 30, 0.35);
+    transform: translateY(-2px);
+  }
+
+  .price-card.yearly {
+    border-color: rgba(37, 211, 102, 0.2);
+  }
+
+  .price-card.yearly:hover {
+    border-color: rgba(37, 211, 102, 0.5);
+  }
+
+  .card-billing {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .card-billing.monthly { color: var(--orange); }
+  .card-billing.yearly { color: var(--green-wa); }
+
+  .save-badge {
+    display: inline-block;
+    background: rgba(37, 211, 102, 0.15);
+    border: 1px solid rgba(37, 211, 102, 0.3);
+    color: var(--green-wa);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .price-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+
+  .price-amount {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 2.2rem;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .price-amount.monthly { color: var(--orange); }
+  .price-amount.yearly { color: var(--green-wa); }
+
+  .price-amount span {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--grey);
+  }
+
+  .price-docs {
+    color: var(--grey);
+    font-size: 0.82rem;
+    margin-bottom: 8px;
+    font-weight: 300;
+  }
+
+  .price-note {
+    color: var(--grey);
+    font-size: 0.75rem;
+    margin-bottom: 22px;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .btn-primary {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 13px 20px;
+    border-radius: 8px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+
+  .btn-primary.monthly {
+    background: var(--orange);
+    color: var(--navy);
+  }
+
+  .btn-primary.yearly {
+    background: var(--green-wa);
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  /* DIVIDER */
+  .tier-divider {
+    height: 1px;
+    background: rgba(244, 107, 30, 0.1);
+    margin: 8px 0 32px;
+  }
+
+  /* REASSURANCE */
+  .reassurance {
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(244, 107, 30, 0.1);
+    padding: 50px 32px;
+  }
+
+  .reassurance-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 32px;
+  }
+
+  .reassurance-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .reassurance-item .icon {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+  }
+
+  .reassurance-item h4 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--white);
+  }
+
+  .reassurance-item p {
+    color: var(--grey);
+    font-size: 0.83rem;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* WHATSAPP */
+  .wa-section {
+    background: var(--navy);
+    padding: 60px 32px;
+    text-align: center;
+    border-top: 1px solid rgba(244, 107, 30, 0.1);
+  }
+
+  .wa-section h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+
+  .wa-section p {
+    color: var(--grey);
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--green-wa);
+    color: #fff;
+    padding: 16px 36px;
+    border-radius: 8px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+
+  .btn-whatsapp:hover { opacity: 0.9; transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: #080f18;
+    padding: 40px 32px;
+    text-align: center;
+    border-top: 1px solid rgba(244, 107, 30, 0.1);
+  }
+
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    color: var(--white);
+    text-decoration: none;
+    display: block;
+  }
+
+  .footer-logo span { color: var(--orange); }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    color: var(--grey);
+    text-decoration: none;
+    font-size: 0.83rem;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--white); }
+
+  .footer-legal {
+    color: #4a5a6a;
+    font-size: 0.75rem;
+    line-height: 1.7;
+  }
+
+  /* MOBILE */
+  @media (max-width: 640px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .page-header { padding: 100px 20px 40px; }
+    .billing-labels { padding: 0 20px 36px; }
+    .pricing-section { padding: 0 20px 60px; }
+    .tier-cards { grid-template-columns: 1fr; }
+    .reassurance { padding: 40px 20px; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .page-tag { animation: fadeUp 0.4s ease both; }
+  .page-header h1 { animation: fadeUp 0.4s 0.1s ease both; }
+  .page-header p { animation: fadeUp 0.4s 0.2s ease both; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="tradefile-home.html" class="nav-logo">Trade<span>File</span>.ie</a>
+  <ul class="nav-links">
+    <li><a href="tradefile-home.html">Home</a></li>
+    <li><a href="tradefile-pricing.html">Pricing</a></li>
+    <li><a href="tradefile-terms.html">T&Cs</a></li>
+    <li><a href="tradefile-pricing.html" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-tag">Pricing</div>
+  <h1>Simple pricing.<br>No hidden fees.</h1>
+  <p>Choose monthly for flexibility or save two months with a yearly plan. Cancel anytime with one month's notice.</p>
+</div>
+
+<!-- BILLING LEGEND -->
+<div class="billing-labels">
+  <div class="billing-label">
+    <div class="billing-dot monthly"></div>
+    Monthly billing
+  </div>
+  <div class="billing-label">
+    <div class="billing-dot yearly"></div>
+    Yearly billing — 2 months free
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="pricing-section">
+
+  <!-- STARTER -->
+  <div class="tier-label">Starter — Up to 30 documents per month</div>
+  <div class="tier">
+    <div class="tier-cards">
+      <div class="price-card">
+        <div class="card-billing monthly">Monthly</div>
+        <h3>Starter</h3>
+        <div class="price-amount monthly">€59<span>/mo</span></div>
+        <div class="price-docs">Up to 30 documents/month</div>
+        <div class="price-note">Cancel anytime with one month's notice</div>
+        <a href="#" class="btn-primary monthly">Get Started</a>
+      </div>
+      <div class="price-card yearly">
+        <div class="card-billing yearly">Yearly <span class="save-badge">Save 2 months</span></div>
+        <h3>Starter</h3>
+        <div class="price-amount yearly">€590<span>/yr</span></div>
+        <div class="price-docs">Up to 30 documents/month</div>
+        <div class="price-note">Equivalent to €49.17/month — auto-renews annually</div>
+        <a href="#" class="btn-primary yearly">Get Started</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="tier-divider"></div>
+
+  <!-- BUSINESS -->
+  <div class="tier-label">Business — Up to 60 documents per month</div>
+  <div class="tier">
+    <div class="tier-cards">
+      <div class="price-card">
+        <div class="card-billing monthly">Monthly</div>
+        <h3>Business</h3>
+        <div class="price-amount monthly">€89<span>/mo</span></div>
+        <div class="price-docs">Up to 60 documents/month</div>
+        <div class="price-note">Cancel anytime with one month's notice</div>
+        <a href="#" class="btn-primary monthly">Get Started</a>
+      </div>
+      <div class="price-card yearly">
+        <div class="card-billing yearly">Yearly <span class="save-badge">Save 2 months</span></div>
+        <h3>Business</h3>
+        <div class="price-amount yearly">€890<span>/yr</span></div>
+        <div class="price-docs">Up to 60 documents/month</div>
+        <div class="price-note">Equivalent to €74.17/month — auto-renews annually</div>
+        <a href="#" class="btn-primary yearly">Get Started</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="tier-divider"></div>
+
+  <!-- GROWING BUSINESS -->
+  <div class="tier-label">Growing Business — Up to 100 documents per month</div>
+  <div class="tier">
+    <div class="tier-cards">
+      <div class="price-card">
+        <div class="card-billing monthly">Monthly</div>
+        <h3>Growing Business</h3>
+        <div class="price-amount monthly">€119<span>/mo</span></div>
+        <div class="price-docs">Up to 100 documents/month</div>
+        <div class="price-note">Cancel anytime with one month's notice</div>
+        <a href="#" class="btn-primary monthly">Get Started</a>
+      </div>
+      <div class="price-card yearly">
+        <div class="card-billing yearly">Yearly <span class="save-badge">Save 2 months</span></div>
+        <h3>Growing Business</h3>
+        <div class="price-amount yearly">€1,190<span>/yr</span></div>
+        <div class="price-docs">Up to 100 documents/month</div>
+        <div class="price-note">Equivalent to €99.17/month — auto-renews annually</div>
+        <a href="#" class="btn-primary yearly">Get Started</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- REASSURANCE -->
+<div class="reassurance">
+  <div class="reassurance-inner">
+    <div class="reassurance-item">
+      <div class="icon">🔒</div>
+      <h4>Secure EU Storage</h4>
+      <p>All your documents stored securely on EU-hosted servers. GDPR compliant.</p>
+    </div>
+    <div class="reassurance-item">
+      <div class="icon">📋</div>
+      <h4>Signed Contract First</h4>
+      <p>We send you a client agreement before we touch a single document. No exceptions.</p>
+    </div>
+    <div class="reassurance-item">
+      <div class="icon">📅</div>
+      <h4>Monthly Cut-Off 20th</h4>
+      <p>Documents received by the 20th are included in that month's report.</p>
+    </div>
+    <div class="reassurance-item">
+      <div class="icon">✅</div>
+      <h4>Cancel Anytime</h4>
+      <p>Monthly plans cancel with one month's notice. No long-term lock-in.</p>
+    </div>
+  </div>
+</div>
+
+<!-- WHATSAPP -->
+<div class="wa-section">
+  <h2>Not sure which plan?</h2>
+  <p>WhatsApp us and we'll help you pick the right one — 087 204 3049</p>
+  <a href="https://wa.me/353872043049" class="btn-whatsapp">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp Us
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="tradefile-home.html" class="footer-logo">Trade<span>File</span>.ie</a>
+  <ul class="footer-links">
+    <li><a href="tradefile-home.html">Home</a></li>
+    <li><a href="tradefile-pricing.html">Pricing</a></li>
+    <li><a href="tradefile-terms.html">T&Cs</a></li>
+    <li><a href="tradefile-privacy.html">Privacy Policy</a></li>
+    <li><a href="tradefile-cookies.html">Cookie Policy</a></li>
+  </ul>
+  <div class="footer-legal">
+    Shake On It Limited, Office 2, 12A Lower Main Street, Lucan, Co Dublin, Ireland<br>
+    TradeFile.ie is a trading name of Shake On It Limited — CRO 814707
+  </div>
+</footer>
+
+</body>
+</html>

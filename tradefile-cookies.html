@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cookie Policy — TradeFile.ie</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #152336;
+    --navy-light: #1e3450;
+    --orange: #f46b1e;
+    --orange-light: #ff8c42;
+    --white: #f5f0e8;
+    --grey: #8a9bb0;
+    --green-wa: #25D366;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* COOKIE BANNER */
+  #cookie-banner {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 999;
+    background: #0a1622;
+    border-top: 2px solid rgba(244, 107, 30, 0.4);
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    box-shadow: 0 -8px 40px rgba(0,0,0,0.5);
+  }
+
+  #cookie-banner.hidden { display: none; }
+
+  .cookie-text {
+    flex: 1;
+    min-width: 260px;
+  }
+
+  .cookie-text strong {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .cookie-text p {
+    color: var(--grey);
+    font-size: 0.82rem;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .cookie-text a {
+    color: var(--orange);
+    text-decoration: none;
+  }
+
+  .cookie-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .btn-cookie-accept {
+    background: var(--orange);
+    color: var(--navy);
+    border: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-cookie-accept:hover { background: var(--orange-light); }
+
+  .btn-cookie-reject {
+    background: transparent;
+    color: var(--grey);
+    border: 1px solid rgba(138, 155, 176, 0.3);
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-cookie-reject:hover { border-color: var(--grey); color: var(--white); }
+
+  .btn-cookie-manage {
+    background: transparent;
+    color: var(--grey);
+    border: none;
+    padding: 10px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-cookie-manage:hover { color: var(--white); }
+
+  /* COOKIE PREFERENCES MODAL */
+  #cookie-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  #cookie-modal.hidden { display: none; }
+
+  .modal-box {
+    background: var(--navy-mid);
+    border: 1px solid rgba(244, 107, 30, 0.2);
+    border-radius: 12px;
+    max-width: 560px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 32px;
+  }
+
+  .modal-box h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+
+  .modal-box > p {
+    color: var(--grey);
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    font-weight: 300;
+  }
+
+  .cookie-toggle-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .cookie-toggle-row:last-of-type { border-bottom: none; }
+
+  .toggle-info h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+  }
+
+  .toggle-info p {
+    color: var(--grey);
+    font-size: 0.82rem;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .toggle-switch {
+    position: relative;
+    flex-shrink: 0;
+    width: 44px;
+    height: 24px;
+    margin-top: 2px;
+  }
+
+  .toggle-switch input { opacity: 0; width: 0; height: 0; }
+
+  .toggle-track {
+    position: absolute;
+    inset: 0;
+    background: rgba(138,155,176,0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .toggle-track::after {
+    content: '';
+    position: absolute;
+    left: 3px; top: 3px;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--grey);
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .toggle-switch input:checked + .toggle-track { background: var(--orange); }
+  .toggle-switch input:checked + .toggle-track::after { transform: translateX(20px); background: #fff; }
+  .toggle-switch input:disabled + .toggle-track { opacity: 0.5; cursor: not-allowed; }
+
+  .modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .btn-save-prefs {
+    background: var(--orange);
+    color: var(--navy);
+    border: none;
+    padding: 11px 24px;
+    border-radius: 6px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-save-prefs:hover { background: var(--orange-light); }
+
+  .btn-accept-all-modal {
+    background: transparent;
+    color: var(--orange);
+    border: 1px solid rgba(244,107,30,0.4);
+    padding: 11px 24px;
+    border-radius: 6px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .btn-accept-all-modal:hover { border-color: var(--orange); }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    background: rgba(13, 27, 42, 0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(244, 107, 30, 0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--orange); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--grey);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--orange);
+    color: var(--navy) !important;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--orange-light) !important; }
+
+  .page-header {
+    padding: 140px 32px 60px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .page-tag {
+    display: inline-block;
+    background: rgba(244, 107, 30, 0.15);
+    border: 1px solid rgba(244, 107, 30, 0.3);
+    color: var(--orange);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+
+  .page-header h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    color: rgba(245, 240, 232, 0.95);
+  }
+
+  .page-header .meta {
+    color: var(--grey);
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .page-header .meta strong {
+    color: rgba(245, 240, 232, 0.7);
+    font-weight: 500;
+  }
+
+  .legal-content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 32px 120px;
+  }
+
+  .legal-section { margin-bottom: 48px; }
+
+  .legal-section h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--white);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(244, 107, 30, 0.15);
+  }
+
+  .legal-section h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: rgba(245, 240, 232, 0.85);
+    margin: 24px 0 12px;
+  }
+
+  .legal-section p {
+    color: var(--grey);
+    font-size: 0.92rem;
+    line-height: 1.8;
+    margin-bottom: 14px;
+    font-weight: 300;
+  }
+
+  .legal-section ul {
+    list-style: none;
+    margin: 0 0 14px 0;
+    padding: 0;
+  }
+
+  .legal-section ul li {
+    color: var(--grey);
+    font-size: 0.92rem;
+    line-height: 1.8;
+    font-weight: 300;
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+
+  .legal-section ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: rgba(244, 107, 30, 0.5);
+    font-size: 0.8rem;
+  }
+
+  .legal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 14px;
+    font-size: 0.86rem;
+  }
+
+  .legal-table th {
+    background: rgba(244, 107, 30, 0.12);
+    color: var(--orange);
+    font-weight: 600;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid rgba(244, 107, 30, 0.2);
+  }
+
+  .legal-table td {
+    padding: 9px 14px;
+    color: var(--grey);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    line-height: 1.5;
+    font-weight: 300;
+    vertical-align: top;
+  }
+
+  .legal-table tr:last-child td { border-bottom: none; }
+  .legal-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .manage-prefs-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(244, 107, 30, 0.1);
+    border: 1px solid rgba(244, 107, 30, 0.3);
+    color: var(--orange);
+    padding: 11px 22px;
+    border-radius: 6px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin: 16px 0;
+  }
+
+  .manage-prefs-btn:hover { background: rgba(244, 107, 30, 0.18); }
+
+  .party-box {
+    background: var(--navy-mid);
+    border: 1px solid rgba(244, 107, 30, 0.15);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 0;
+  }
+
+  .party-box table { width: 100%; border-collapse: collapse; }
+
+  .party-box td {
+    padding: 6px 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    vertical-align: top;
+  }
+
+  .party-box td:first-child {
+    color: var(--grey);
+    font-weight: 500;
+    width: 180px;
+    padding-right: 20px;
+  }
+
+  .party-box td:last-child { color: var(--white); }
+
+  .wa-section {
+    background: var(--navy-mid);
+    padding: 60px 32px;
+    text-align: center;
+    border-top: 1px solid rgba(244, 107, 30, 0.1);
+    border-bottom: 1px solid rgba(244, 107, 30, 0.1);
+  }
+
+  .wa-section .section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 12px;
+  }
+
+  .wa-section h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .wa-section p {
+    color: var(--grey);
+    margin-bottom: 24px;
+    font-size: 1rem;
+    font-weight: 300;
+  }
+
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--green-wa);
+    color: #fff;
+    padding: 16px 36px;
+    border-radius: 8px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+
+  .btn-whatsapp:hover { opacity: 0.9; transform: translateY(-2px); }
+
+  footer {
+    background: #080f18;
+    padding: 40px 32px;
+    text-align: center;
+    border-top: 1px solid rgba(244, 107, 30, 0.1);
+  }
+
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    color: var(--white);
+  }
+
+  .footer-logo span { color: var(--orange); }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    color: var(--grey);
+    text-decoration: none;
+    font-size: 0.83rem;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--white); }
+
+  .footer-legal {
+    color: #4a5a6a;
+    font-size: 0.75rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .page-header { padding: 110px 20px 40px; }
+    .legal-content { padding: 0 20px 100px; }
+    .party-box { padding: 20px; }
+    .party-box td:first-child { width: 120px; }
+    #cookie-banner { padding: 16px 20px; }
+    .legal-table { font-size: 0.78rem; }
+    .legal-table th, .legal-table td { padding: 7px 9px; }
+    .modal-box { padding: 24px 20px; }
+    .wa-section { padding: 50px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COOKIE CONSENT BANNER -->
+<div id="cookie-banner">
+  <div class="cookie-text">
+    <strong>🍪 We use cookies</strong>
+    <p>We use strictly necessary cookies to make our site work, and optional analytics cookies to understand how visitors use it. You can accept all, reject optional cookies, or manage your preferences. See our <a href="tradefile-cookies.html">Cookie Policy</a> for full details.</p>
+  </div>
+  <div class="cookie-buttons">
+    <button class="btn-cookie-accept" onclick="acceptAll()">Accept All</button>
+    <button class="btn-cookie-reject" onclick="rejectAll()">Reject Optional</button>
+    <button class="btn-cookie-manage" onclick="openModal()">Manage Preferences</button>
+  </div>
+</div>
+
+<!-- COOKIE PREFERENCES MODAL -->
+<div id="cookie-modal" class="hidden">
+  <div class="modal-box">
+    <h2>Cookie Preferences</h2>
+    <p>Choose which cookies you allow us to use. Strictly necessary cookies cannot be disabled as they are required for the website to function.</p>
+
+    <div class="cookie-toggle-row">
+      <div class="toggle-info">
+        <h3>Strictly Necessary</h3>
+        <p>Essential for the site to work — session management, security, and your consent preferences. Always active.</p>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" checked disabled>
+        <span class="toggle-track"></span>
+      </label>
+    </div>
+
+    <div class="cookie-toggle-row">
+      <div class="toggle-info">
+        <h3>Analytics</h3>
+        <p>Google Analytics — helps us understand which pages are visited and how visitors navigate the site. All data is anonymised. No personal profiles are built.</p>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-analytics">
+        <span class="toggle-track"></span>
+      </label>
+    </div>
+
+    <div class="cookie-toggle-row">
+      <div class="toggle-info">
+        <h3>Functional</h3>
+        <p>Remembers your preferences on return visits (e.g. language settings). Not required for core functionality.</p>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-functional">
+        <span class="toggle-track"></span>
+      </label>
+    </div>
+
+    <div class="cookie-toggle-row">
+      <div class="toggle-info">
+        <h3>Payment (Stripe)</h3>
+        <p>Set by Stripe when you proceed to payment. Necessary for fraud prevention and secure transaction processing.</p>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-payment" checked>
+        <span class="toggle-track"></span>
+      </label>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-save-prefs" onclick="savePreferences()">Save My Preferences</button>
+      <button class="btn-accept-all-modal" onclick="acceptAll()">Accept All</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="tradefile-home.html" class="nav-logo">Trade<span>File</span>.ie</a>
+  <ul class="nav-links">
+    <li><a href="tradefile-home.html#how-it-works">How It Works</a></li>
+    <li><a href="tradefile-pricing.html">Pricing</a></li>
+    <li><a href="tradefile-home.html#who">Who It's For</a></li>
+    <li><a href="tradefile-pricing.html" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-tag">Legal</div>
+  <h1>Cookie Policy</h1>
+  <div class="meta">
+    <strong>Version 1.0</strong> &nbsp;·&nbsp; Effective Date: 23 May 2026<br>
+    Shake On It Limited (trading as TradeFile.ie) — CRO 814707
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="legal-content">
+
+  <div class="legal-section">
+    <p>This Cookie Policy explains how Shake On It Limited, trading as TradeFile.ie ("we", "us", "our"), uses cookies and similar tracking technologies on our website at tradefile.ie. This policy should be read alongside our <a href="tradefile-privacy.html" style="color: var(--orange); text-decoration: none;">Privacy Policy</a>.</p>
+    <p>This policy is issued in compliance with the General Data Protection Regulation (EU) 2016/679 (GDPR), the European Communities (Electronic Communications Networks and Services) (Privacy and Electronic Communications) Regulations 2011 (SI 336/2011), the Data Protection Acts 1988–2018, and guidance issued by the Irish Data Protection Commission (DPC).</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>1. What Are Cookies?</h2>
+    <p>Cookies are small text files placed on your device (computer, tablet, or phone) when you visit a website. They are widely used to make websites work, improve performance, and provide information to the website owner.</p>
+    <p>Similar technologies include web beacons, pixel tags, local storage, and session storage. For the purposes of this policy, all such technologies are referred to collectively as "cookies".</p>
+    <p>Cookies can be:</p>
+    <ul>
+      <li>Session cookies — temporary, deleted when you close your browser</li>
+      <li>Persistent cookies — stored on your device for a set period or until you delete them</li>
+      <li>First-party cookies — set by tradefile.ie directly</li>
+      <li>Third-party cookies — set by third-party services embedded in our website</li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <h2>2. Legal Basis for Cookies</h2>
+    <p>Under Irish and EU law, we must obtain your prior informed consent before placing any cookies on your device, except for strictly necessary cookies which are exempt from consent requirements.</p>
+    <p>When you first visit tradefile.ie, you will be presented with a cookie consent banner. You may accept all cookies, reject all non-essential cookies, or manage your preferences and accept only specific categories. Your consent is freely given, specific, informed, and unambiguous in accordance with Article 7 GDPR and Recital 32. Pre-ticked boxes or implied consent are not used. You may withdraw your consent at any time — see Section 6.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>3. Categories of Cookies We Use</h2>
+
+    <h3>3.1 Strictly Necessary Cookies</h3>
+    <p>These cookies are essential for the website to operate. They do not require your consent.</p>
+    <table class="legal-table">
+      <thead>
+        <tr><th>Cookie Name</th><th>Provider</th><th>Duration</th><th>Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>session_id</td><td>tradefile.ie</td><td>Session</td><td>Maintains your active session on the website</td></tr>
+        <tr><td>cookie_consent</td><td>tradefile.ie</td><td>12 months</td><td>Records your cookie consent preferences</td></tr>
+        <tr><td>csrf_token</td><td>tradefile.ie</td><td>Session</td><td>Security token to prevent cross-site request forgery</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.2 Performance and Analytics Cookies</h3>
+    <p>These cookies help us understand how visitors use our website. All data collected is aggregated and anonymised. These cookies require your consent.</p>
+    <table class="legal-table">
+      <thead>
+        <tr><th>Cookie Name</th><th>Provider</th><th>Duration</th><th>Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>_ga</td><td>Google Analytics</td><td>2 years</td><td>Distinguishes unique website users</td></tr>
+        <tr><td>_ga_*</td><td>Google Analytics</td><td>2 years</td><td>Stores session state for Google Analytics 4</td></tr>
+        <tr><td>_gid</td><td>Google Analytics</td><td>24 hours</td><td>Distinguishes website users</td></tr>
+        <tr><td>_gat</td><td>Google Analytics</td><td>1 minute</td><td>Throttles request rate to Google Analytics</td></tr>
+      </tbody>
+    </table>
+    <p>Google Analytics is operated by Google Ireland Limited, Gordon House, Barrow Street, Dublin 4. We have enabled IP anonymisation so that no full IP addresses are stored. We do not use Google Analytics for advertising or remarketing purposes.</p>
+
+    <h3>3.3 Functional Cookies</h3>
+    <p>These cookies remember your preferences and settings to improve your experience on return visits. They require your consent.</p>
+    <table class="legal-table">
+      <thead>
+        <tr><th>Cookie Name</th><th>Provider</th><th>Duration</th><th>Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>lang_pref</td><td>tradefile.ie</td><td>12 months</td><td>Stores your language preference</td></tr>
+        <tr><td>form_autofill</td><td>tradefile.ie</td><td>Session</td><td>Retains form field data during your session</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.4 Payment Processing Cookies (Stripe)</h3>
+    <p>When you proceed to payment, Stripe may set cookies to facilitate secure payment processing. While technically third-party cookies, they are essential to the payment process.</p>
+    <table class="legal-table">
+      <thead>
+        <tr><th>Cookie Name</th><th>Provider</th><th>Duration</th><th>Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>__stripe_mid</td><td>Stripe</td><td>1 year</td><td>Fraud prevention and secure payment processing</td></tr>
+        <tr><td>__stripe_sid</td><td>Stripe</td><td>30 minutes</td><td>Session management for payment processing</td></tr>
+      </tbody>
+    </table>
+    <p>Stripe cookies are governed by Stripe's Privacy Policy at <a href="https://stripe.com/ie/privacy" style="color: var(--orange); text-decoration: none;" target="_blank">stripe.com/ie/privacy</a>.</p>
+
+    <h3>3.5 Marketing and Advertising Cookies</h3>
+    <p>TradeFile.ie does not currently use marketing or advertising cookies. We do not serve behavioural advertising. If this changes in the future, we will update this policy and seek your consent before placing any such cookies.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>4. Third-Party Cookies</h2>
+    <table class="legal-table">
+      <thead>
+        <tr><th>Third Party</th><th>Website</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Google Analytics</td><td>analytics.google.com</td><td>Google Ireland Ltd, Dublin</td></tr>
+        <tr><td>Stripe</td><td>stripe.com</td><td>Stripe Payments Europe Ltd, Dublin</td></tr>
+        <tr><td>Google Fonts</td><td>fonts.google.com</td><td>Google Ireland Ltd, Dublin — no personal data collected via fonts</td></tr>
+      </tbody>
+    </table>
+    <p>We review third-party integrations regularly and will update this policy when new third parties are added.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>5. Cookies and Personal Data</h2>
+    <p>Some cookies may be associated with personal data — for example, if you are logged in, session cookies will be linked to your account. In such cases, the processing of personal data is governed by our <a href="tradefile-privacy.html" style="color: var(--orange); text-decoration: none;">Privacy Policy</a>.</p>
+    <p>Analytics cookies are used with IP anonymisation enabled and produce only aggregated, non-identifiable data. We do not use cookies to build personal profiles for advertising purposes.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>6. Managing and Withdrawing Consent</h2>
+
+    <h3>6.1 Cookie Preference Centre</h3>
+    <p>You can update your cookie preferences at any time using the button below, or by clicking "Cookie Settings" in the footer of any page.</p>
+    <button class="manage-prefs-btn" onclick="openModal()">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
+      Open Cookie Settings
+    </button>
+
+    <h3>6.2 Browser Settings</h3>
+    <p>You can control cookies through your browser settings. Most browsers allow you to block all cookies, block third-party cookies only, delete existing cookies, or receive alerts before cookies are set. Please note that blocking strictly necessary cookies will prevent some parts of the website from functioning.</p>
+    <ul>
+      <li>Google Chrome: Settings → Privacy and Security → Cookies and other site data</li>
+      <li>Mozilla Firefox: Options → Privacy &amp; Security → Cookies and Site Data</li>
+      <li>Safari: Preferences → Privacy → Manage Website Data</li>
+      <li>Microsoft Edge: Settings → Cookies and site permissions</li>
+    </ul>
+
+    <h3>6.3 Opt-Out from Google Analytics</h3>
+    <p>You can prevent Google Analytics from collecting data about your visits by installing the Google Analytics Opt-out Browser Add-on, available at <a href="https://tools.google.com/dlpage/gaoptout" style="color: var(--orange); text-decoration: none;" target="_blank">tools.google.com/dlpage/gaoptout</a>. Alternatively, your preferences via our Cookie Preference Centre will prevent analytics cookies from being set.</p>
+
+    <h3>6.4 Withdrawing Consent</h3>
+    <p>Withdrawing consent will not affect the lawfulness of any processing carried out before withdrawal. If you withdraw consent for analytics or functional cookies, those cookies will be deleted from your device.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>7. Cookie Duration</h2>
+    <p>Cookies remain on your device for the duration shown in the cookie tables in Section 3. Session cookies are deleted automatically when you close your browser. Persistent cookies remain until they expire or until you delete them through your browser settings.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>8. Do Not Track</h2>
+    <p>Some browsers include a "Do Not Track" (DNT) feature. There is currently no agreed standard for how websites should respond to DNT signals. While we respect your privacy preferences and provide the opt-out mechanisms described in Section 6, we do not currently alter our data collection practices specifically in response to DNT signals. We will update this policy if an industry standard emerges.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>9. Changes to This Policy</h2>
+    <p>We may update this Cookie Policy from time to time to reflect changes in technology, law, or our practices. We will notify you of material changes by updating the effective date and, where appropriate, by placing a notice on our website or notifying you by email. We will seek fresh consent where required by law.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>10. Contact</h2>
+    <div class="party-box">
+      <table>
+        <tr><td>Company</td><td>Shake On It Limited (trading as TradeFile.ie)</td></tr>
+        <tr><td>CRO</td><td>814707</td></tr>
+        <tr><td>Address</td><td>Office 2, 12A Lower Main Street, Lucan, Co Dublin, Ireland</td></tr>
+        <tr><td>Email</td><td>info@shakeonit.ie</td></tr>
+        <tr><td>DPC</td><td><a href="https://www.dataprotection.ie" style="color: var(--orange); text-decoration: none;" target="_blank">www.dataprotection.ie</a> — 01 765 0100</td></tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- WHATSAPP CTA -->
+<section class="wa-section">
+  <div class="section-label">Have a Question?</div>
+  <h2>Talk to us on WhatsApp</h2>
+  <p>087 204 3049 — we'll get back to you quickly</p>
+  <a href="https://wa.me/353872043049" class="btn-whatsapp">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp Us Now
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Trade<span>File</span>.ie</div>
+  <ul class="footer-links">
+    <li><a href="tradefile-home.html">Home</a></li>
+    <li><a href="tradefile-pricing.html">Pricing</a></li>
+    <li><a href="tradefile-terms.html">T&amp;Cs</a></li>
+    <li><a href="tradefile-privacy.html">Privacy Policy</a></li>
+    <li><a href="tradefile-cookies.html">Cookie Policy</a></li>
+    <li><a href="#" onclick="openModal(); return false;" style="color: var(--grey);">Cookie Settings</a></li>
+  </ul>
+  <div class="footer-legal">
+    Shake On It Limited, Office 2, 12A Lower Main Street, Lucan, Co Dublin, Ireland<br>
+    TradeFile.ie is a trading name of Shake On It Limited — CRO 814707
+  </div>
+</footer>
+
+<script>
+  const CONSENT_KEY = 'tradefile_cookie_consent';
+
+  function getConsent() {
+    try {
+      return JSON.parse(localStorage.getItem(CONSENT_KEY));
+    } catch { return null; }
+  }
+
+  function setConsent(prefs) {
+    try {
+      localStorage.setItem(CONSENT_KEY, JSON.stringify({ ...prefs, timestamp: Date.now() }));
+    } catch {}
+    document.getElementById('cookie-banner').classList.add('hidden');
+    document.getElementById('cookie-modal').classList.add('hidden');
+  }
+
+  function acceptAll() {
+    setConsent({ necessary: true, analytics: true, functional: true, payment: true, all: true });
+  }
+
+  function rejectAll() {
+    setConsent({ necessary: true, analytics: false, functional: false, payment: false, all: false });
+  }
+
+  function savePreferences() {
+    setConsent({
+      necessary: true,
+      analytics: document.getElementById('toggle-analytics').checked,
+      functional: document.getElementById('toggle-functional').checked,
+      payment: document.getElementById('toggle-payment').checked,
+      all: false
+    });
+  }
+
+  function openModal() {
+    const prefs = getConsent();
+    if (prefs) {
+      document.getElementById('toggle-analytics').checked = !!prefs.analytics;
+      document.getElementById('toggle-functional').checked = !!prefs.functional;
+      document.getElementById('toggle-payment').checked = prefs.payment !== false;
+    }
+    document.getElementById('cookie-modal').classList.remove('hidden');
+    document.getElementById('cookie-banner').classList.add('hidden');
+  }
+
+  document.getElementById('cookie-modal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.add('hidden');
+  });
+
+  // On load — hide banner if already consented
+  window.addEventListener('DOMContentLoaded', function() {
+    if (getConsent()) {
+      document.getElementById('cookie-banner').classList.add('hidden');
+    }
+  });
+</script>
+
+</body>
+</html>

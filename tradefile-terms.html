@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms & Conditions — TradeFile.ie</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #152336;
+    --navy-light: #1e3450;
+    --orange: #f46b1e;
+    --orange-light: #ff8c42;
+    --white: #f5f0e8;
+    --grey: #8a9bb0;
+    --green-wa: #25D366;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    background: rgba(13, 27, 42, 0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(244, 107, 30, 0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--orange); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--grey);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--orange);
+    color: var(--navy) !important;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--orange-light) !important; }
+
+  /* PAGE HEADER */
+  .page-header {
+    padding: 140px 32px 60px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .page-tag {
+    display: inline-block;
+    background: rgba(244, 107, 30, 0.15);
+    border: 1px solid rgba(244, 107, 30, 0.3);
+    color: var(--orange);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+
+  .page-header h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    color: rgba(245, 240, 232, 0.95);
+  }
+
+  .page-header .meta {
+    color: var(--grey);
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .page-header .meta strong {
+    color: rgba(245, 240, 232, 0.7);
+    font-weight: 500;
+  }
+
+  /* CONTENT */
+  .legal-content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+  }
+
+  .party-box {
+    background: var(--navy-mid);
+    border: 1px solid rgba(244, 107, 30, 0.15);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 56px;
+  }
+
+  .party-box table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .party-box td {
+    padding: 6px 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    vertical-align: top;
+  }
+
+  .party-box td:first-child {
+    color: var(--grey);
+    font-weight: 500;
+    width: 180px;
+    padding-right: 20px;
+  }
+
+  .party-box td:last-child {
+    color: var(--white);
+  }
+
+  .legal-section {
+    margin-bottom: 48px;
+  }
+
+  .legal-section h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--white);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(244, 107, 30, 0.15);
+  }
+
+  .legal-section h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: rgba(245, 240, 232, 0.85);
+    margin: 24px 0 12px;
+  }
+
+  .legal-section p {
+    color: var(--grey);
+    font-size: 0.92rem;
+    line-height: 1.8;
+    margin-bottom: 14px;
+    font-weight: 300;
+  }
+
+  .legal-section ul {
+    list-style: none;
+    margin: 0 0 14px 0;
+    padding: 0;
+  }
+
+  .legal-section ul li {
+    color: var(--grey);
+    font-size: 0.92rem;
+    line-height: 1.8;
+    font-weight: 300;
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+
+  .legal-section ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: rgba(244, 107, 30, 0.5);
+    font-size: 0.8rem;
+  }
+
+  /* PRICING TABLE */
+  .legal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 14px;
+    font-size: 0.88rem;
+  }
+
+  .legal-table th {
+    background: rgba(244, 107, 30, 0.12);
+    color: var(--orange);
+    font-weight: 600;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    text-align: left;
+    border-bottom: 1px solid rgba(244, 107, 30, 0.2);
+  }
+
+  .legal-table td {
+    padding: 10px 16px;
+    color: var(--grey);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  .legal-table tr:last-child td { border-bottom: none; }
+  .legal-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .highlight-box {
+    background: rgba(244, 107, 30, 0.08);
+    border-left: 3px solid var(--orange);
+    border-radius: 0 6px 6px 0;
+    padding: 16px 20px;
+    margin: 20px 0;
+  }
+
+  .highlight-box p {
+    margin: 0;
+    color: rgba(245, 240, 232, 0.75) !important;
+    font-size: 0.88rem !important;
+  }
+
+  /* WHATSAPP */
+  .wa-section {
+    background: var(--navy-mid);
+    padding: 60px 32px;
+    text-align: center;
+    border-top: 1px solid rgba(244, 107, 30, 0.1);
+    border-bottom: 1px solid rgba(244, 107, 30, 0.1);
+  }
+
+  .wa-section .section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 12px;
+  }
+
+  .wa-section h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .wa-section p {
+    color: var(--grey);
+    margin-bottom: 24px;
+    font-size: 1rem;
+    font-weight: 300;
+  }
+
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--green-wa);
+    color: #fff;
+    padding: 16px 36px;
+    border-radius: 8px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+
+  .btn-whatsapp:hover { opacity: 0.9; transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: #080f18;
+    padding: 40px 32px;
+    text-align: center;
+    border-top: 1px solid rgba(244, 107, 30, 0.1);
+  }
+
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    color: var(--white);
+  }
+
+  .footer-logo span { color: var(--orange); }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    color: var(--grey);
+    text-decoration: none;
+    font-size: 0.83rem;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--white); }
+
+  .footer-legal {
+    color: #4a5a6a;
+    font-size: 0.75rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .page-header { padding: 110px 20px 40px; }
+    .legal-content { padding: 0 20px 60px; }
+    .party-box { padding: 20px; }
+    .party-box td:first-child { width: 130px; }
+    .legal-table { font-size: 0.82rem; }
+    .legal-table th, .legal-table td { padding: 8px 10px; }
+    .wa-section { padding: 50px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="tradefile-home.html" class="nav-logo">Trade<span>File</span>.ie</a>
+  <ul class="nav-links">
+    <li><a href="tradefile-home.html#how-it-works">How It Works</a></li>
+    <li><a href="tradefile-pricing.html">Pricing</a></li>
+    <li><a href="tradefile-home.html#who">Who It's For</a></li>
+    <li><a href="tradefile-pricing.html" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-tag">Legal</div>
+  <h1>Terms &amp; Conditions</h1>
+  <div class="meta">
+    <strong>Version 1.1</strong> &nbsp;·&nbsp; Effective Date: 23 May 2026<br>
+    Shake On It Limited (trading as TradeFile.ie) — CRO 814707
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="legal-content">
+
+  <div class="party-box">
+    <table>
+      <tr><td>Service Provider</td><td>Shake On It Limited</td></tr>
+      <tr><td>Trading As</td><td>TradeFile.ie</td></tr>
+      <tr><td>CRO Number</td><td>814707</td></tr>
+      <tr><td>Registered Address</td><td>Office 2, 12A Lower Main Street, Lucan, Co Dublin, Ireland</td></tr>
+      <tr><td>Contact Email</td><td>info@shakeonit.ie</td></tr>
+      <tr><td>WhatsApp</td><td>087 204 3049</td></tr>
+      <tr><td>Website</td><td>tradefile.ie</td></tr>
+    </table>
+  </div>
+
+  <div class="legal-section">
+    <h2>1. Introduction and Acceptance</h2>
+    <p>These Terms and Conditions ("Terms") govern your use of the document organisation and filing services provided by Shake On It Limited, trading as TradeFile.ie ("we", "us", "our"). By registering for and using our services, you ("Client", "you") agree to be bound by these Terms in full.</p>
+    <p>If you do not agree with any part of these Terms, you must not use our services. These Terms constitute a legally binding agreement between you and Shake On It Limited.</p>
+    <p>These Terms should be read alongside our Privacy Policy, Cookie Policy, and Data Processing Agreement, all of which form part of the contract between us.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>2. Description of Service</h2>
+    <p>TradeFile.ie provides a virtual document organisation and administrative filing service. Our service is strictly limited to:</p>
+    <ul>
+      <li>Receiving documents (receipts, invoices, and business paperwork) submitted by you via WhatsApp or email</li>
+      <li>Saving, naming, and filing those documents in an organised digital format within your designated Google Drive folder</li>
+      <li>Maintaining a running spreadsheet log of documents received</li>
+      <li>Providing a monthly summary confirming documents processed (where applicable to your plan)</li>
+      <li>Preparing a year-end document pack on request</li>
+    </ul>
+    <p>TradeFile.ie is an administrative document management service only. It is legally equivalent to a filing company, document storage service, or virtual administrative assistant organising paperwork.</p>
+
+    <h3>2.1 What TradeFile.ie is NOT</h3>
+    <p>The following activities are explicitly outside the scope of our service. We do not provide:</p>
+    <ul>
+      <li>Bookkeeping or accounting services</li>
+      <li>Tax advice, tax calculation, or tax return preparation</li>
+      <li>Financial advice of any nature</li>
+      <li>Invoice generation or credit control</li>
+      <li>Payroll processing</li>
+      <li>Expense classification for tax purposes (any category labels used are for organisational purposes only)</li>
+      <li>Revenue submission or any communication with Revenue on your behalf</li>
+      <li>Regulated financial services of any kind</li>
+    </ul>
+    <p>If you submit a request that falls outside the above scope, we will politely decline and direct you to your accountant or other appropriate professional.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>3. Eligibility</h2>
+    <p>Our services are available to self-employed individuals, sole traders, farmers, and small businesses registered or operating in Ireland. You must be at least 18 years of age and have legal capacity to enter into a binding contract. By registering, you confirm that you meet these requirements.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>4. Registration and Account</h2>
+    <p>To use our services, you must complete the registration process at tradefile.ie, providing accurate and complete information. You are responsible for maintaining the accuracy of your account information and for all activity that occurs under your account. Notify us immediately at info@shakeonit.ie if you become aware of any unauthorised use.</p>
+    <p>We reserve the right to refuse registration or cancel an account where information provided is inaccurate or fraudulent, or where continued service would be inappropriate.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>5. How to Submit Documents</h2>
+    <p>You may submit documents to us via the following channels only:</p>
+    <ul>
+      <li>WhatsApp: Photos or files sent to 087 204 3049</li>
+      <li>Email: Documents forwarded or attached to info@tradefile.ie</li>
+    </ul>
+    <p>You are responsible for the legibility and completeness of all documents submitted. All documents submitted must relate to your own legitimate business activities.</p>
+
+    <h3>5.1 Monthly Cut-Off</h3>
+    <div class="highlight-box">
+      <p>Documents must be received by the <strong>20th of each calendar month</strong> to be included in that month's filing cycle. Documents received after the 20th will be processed in the following month's cycle. This cut-off is firm, stated in your onboarding materials, and is a condition of the service.</p>
+    </div>
+  </div>
+
+  <div class="legal-section">
+    <h2>6. Pricing and Payment</h2>
+
+    <h3>6.1 Monthly Subscription Plans</h3>
+    <table class="legal-table">
+      <thead>
+        <tr>
+          <th>Plan</th>
+          <th>Documents/Month</th>
+          <th>Monthly Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Starter</td><td>Up to 30</td><td>€59/month</td></tr>
+        <tr><td>Business</td><td>Up to 60</td><td>€89/month</td></tr>
+        <tr><td>Growing Business</td><td>Up to 100</td><td>€119/month</td></tr>
+        <tr><td>High Volume</td><td>100+</td><td>Contact us</td></tr>
+      </tbody>
+    </table>
+
+    <h3>6.2 Annual Payment Option — Pay 10 Months, Get 12</h3>
+    <table class="legal-table">
+      <thead>
+        <tr>
+          <th>Plan</th>
+          <th>Monthly Rate</th>
+          <th>Annual Price</th>
+          <th>You Save</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Starter</td><td>€59/month</td><td>€590/year</td><td>€118 — 2 months free</td></tr>
+        <tr><td>Business</td><td>€89/month</td><td>€890/year</td><td>€178 — 2 months free</td></tr>
+        <tr><td>Growing Business</td><td>€119/month</td><td>€1,190/year</td><td>€238 — 2 months free</td></tr>
+      </tbody>
+    </table>
+    <p>The annual fee is paid in full at the time of subscription and is non-refundable after the 14-day cooling-off period described in Section 8.2. Annual subscriptions auto-renew at the end of each 12-month term unless cancelled in writing at least 30 days before the renewal date.</p>
+
+    <h3>6.3 Payment Terms</h3>
+    <p>All payments are processed via Stripe. By subscribing, you authorise us to charge your nominated payment method on the basis selected (monthly or annual). Prices are quoted inclusive of any applicable taxes unless otherwise stated.</p>
+
+    <h3>6.4 VAT</h3>
+    <p>Shake On It Limited is not currently registered for VAT, as our turnover is below the Irish VAT registration threshold for services (€37,500 per annum). Prices shown are the total price — no VAT is applied at this time. We will provide 30 days' written notice to all clients before applying VAT, should registration become required.</p>
+
+    <h3>6.5 Failed Payments and Suspension</h3>
+    <p>If a payment fails, we will notify you by email. You will have 14 calendar days to update your payment details and settle the outstanding amount. If payment is not received within 14 days, your service will be suspended. If payment remains outstanding after a further 14 days (28 days total), your subscription will be terminated and your Google Drive access revoked. Outstanding amounts remain payable.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>7. Your Responsibilities</h2>
+    <p>You agree to:</p>
+    <ul>
+      <li>Provide accurate, complete, and legible documents</li>
+      <li>Ensure all documents submitted relate to your own legitimate business</li>
+      <li>Maintain your own copies of all documents submitted to us — we are not your primary document storage solution</li>
+      <li>Be solely responsible for the accuracy of your own tax returns and Revenue submissions</li>
+      <li>Consult a qualified accountant or tax professional for all matters relating to tax, accounting, or financial advice</li>
+      <li>Notify us promptly of any change to your contact details or subscription requirements</li>
+      <li>Not submit fraudulent, forged, or altered documents</li>
+      <li>Not use our service for any unlawful purpose</li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <h2>8. Cancellation and Refunds</h2>
+
+    <h3>8.1 Monthly Subscriptions</h3>
+    <p>You may cancel your monthly subscription at any time by providing one calendar month's written notice to info@shakeonit.ie. Your service will continue until the end of the billing period covered by your notice. No refund is provided for the remaining days of the current period.</p>
+
+    <h3>8.2 Annual Subscriptions — Cooling-Off Period</h3>
+    <p>In accordance with the European Union (Consumer Information, Cancellation and Other Rights) Regulations 2013 (SI 484/2013), you have the right to cancel your annual subscription within <strong>14 calendar days</strong> of the date of purchase without giving any reason. To exercise this right, you must notify us in writing at info@shakeonit.ie within 14 days. Where you have requested that the service commence within the cooling-off period, a pro-rata deduction will apply for services already delivered.</p>
+    <p>After the 14-day cooling-off period, annual subscriptions are non-refundable. The subscription will run for the full 12-month term and will auto-renew unless cancelled in writing at least 30 days before the renewal date.</p>
+
+    <h3>8.3 Cancellation by Us</h3>
+    <p>We reserve the right to suspend or terminate your subscription immediately where: (a) you are in material breach of these Terms; (b) payment is outstanding in accordance with Section 6.5; (c) we have reason to believe fraudulent or unlawful activity is occurring; or (d) it becomes impossible or impractical to provide the service through circumstances outside our control.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>9. Intellectual Property</h2>
+    <p>All content, materials, templates, and processes created by TradeFile.ie or Shake On It Limited remain our intellectual property. Documents submitted by you remain your property. By submitting documents to us, you grant us a limited licence to process, store, and organise those documents solely for the purpose of delivering the service.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>10. Limitation of Liability</h2>
+    <p>To the fullest extent permitted by Irish and EU law:</p>
+    <ul>
+      <li>Our total aggregate liability shall not exceed the total fees paid by you in the three calendar months immediately preceding the event giving rise to the claim</li>
+      <li>We shall not be liable for any indirect, consequential, or incidental loss, including loss of profit, loss of data, or loss of business opportunity</li>
+      <li>We shall not be liable for any loss arising from your failure to maintain copies of your documents</li>
+      <li>We shall not be liable for any tax assessment, penalty, or Revenue outcome arising from your own financial records or tax affairs</li>
+      <li>We shall not be liable for delays or failures resulting from circumstances outside our reasonable control</li>
+    </ul>
+    <p>Nothing in these Terms excludes liability for death or personal injury caused by our negligence, fraud, or any other liability that cannot be excluded under Irish or EU law.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>11. Indemnity</h2>
+    <p>You agree to indemnify and hold harmless Shake On It Limited, its director, employees, and agents from and against any claims, liabilities, damages, and expenses arising out of: (a) your breach of these Terms; (b) your negligence or wilful misconduct; (c) any claim by a third party arising from your use of our service; or (d) inaccurate, fraudulent, or incomplete documents submitted by you.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>12. Data Protection</h2>
+    <p>We are committed to protecting your personal data in accordance with the General Data Protection Regulation (EU) 2016/679 (GDPR) and the Data Protection Acts 1988–2018. Your personal data is processed in accordance with our <a href="tradefile-privacy.html" style="color: var(--orange); text-decoration: none;">Privacy Policy</a> and <a href="tradefile-privacy.html" style="color: var(--orange); text-decoration: none;">Data Processing Agreement</a>, both of which form part of these Terms. The supervisory authority for data protection in Ireland is the Data Protection Commission (DPC) at <a href="https://www.dataprotection.ie" style="color: var(--orange); text-decoration: none;" target="_blank">www.dataprotection.ie</a>.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>13. Governing Law and Disputes</h2>
+    <p>These Terms are governed by the laws of Ireland. Any dispute shall be subject to the exclusive jurisdiction of the Irish courts. We encourage informal resolution in the first instance at info@shakeonit.ie. You may also use the EU Online Dispute Resolution platform at <a href="https://ec.europa.eu/consumers/odr" style="color: var(--orange); text-decoration: none;" target="_blank">ec.europa.eu/consumers/odr</a>.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>14. Changes to These Terms</h2>
+    <p>We may update these Terms at any time. We will provide at least 30 days' written notice of material changes by email. Continued use of the service after the effective date constitutes acceptance. If you do not accept the revised Terms, you may cancel in accordance with Section 8.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>15. Severability and Waiver</h2>
+    <p>If any provision of these Terms is found to be unlawful or unenforceable, that provision shall be severable without affecting the remaining provisions. Our failure to enforce any right shall not constitute a waiver of that right.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>16. Entire Agreement</h2>
+    <p>These Terms, together with the Privacy Policy, Cookie Policy, and Data Processing Agreement, constitute the entire agreement between you and Shake On It Limited in relation to the TradeFile.ie service and supersede all prior agreements and understandings.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>17. Contact</h2>
+    <div class="party-box" style="margin-bottom: 0;">
+      <table>
+        <tr><td>Company</td><td>Shake On It Limited (trading as TradeFile.ie)</td></tr>
+        <tr><td>CRO</td><td>814707</td></tr>
+        <tr><td>Address</td><td>Office 2, 12A Lower Main Street, Lucan, Co Dublin, Ireland</td></tr>
+        <tr><td>Email</td><td>info@shakeonit.ie</td></tr>
+        <tr><td>WhatsApp</td><td>087 204 3049</td></tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- WHATSAPP CTA -->
+<section class="wa-section">
+  <div class="section-label">Have a Question?</div>
+  <h2>Talk to us on WhatsApp</h2>
+  <p>087 204 3049 — we'll get back to you quickly</p>
+  <a href="https://wa.me/353872043049" class="btn-whatsapp">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp Us Now
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Trade<span>File</span>.ie</div>
+  <ul class="footer-links">
+    <li><a href="tradefile-home.html">Home</a></li>
+    <li><a href="tradefile-pricing.html">Pricing</a></li>
+    <li><a href="tradefile-terms.html">T&amp;Cs</a></li>
+    <li><a href="tradefile-privacy.html">Privacy Policy</a></li>
+    <li><a href="tradefile-cookies.html">Cookie Policy</a></li>
+  </ul>
+  <div class="footer-legal">
+    Shake On It Limited, Office 2, 12A Lower Main Street, Lucan, Co Dublin, Ireland<br>
+    TradeFile.ie is a trading name of Shake On It Limited — CRO 814707
+  </div>
+</footer>
+
+</body>
+</html>
