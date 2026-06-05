@@ -443,6 +443,34 @@
     .reassurance { padding: 40px 20px; }
   }
 
+  /* JUNE OFFER CARD */
+  .price-card.june-offer {
+    border-color: rgba(244, 107, 30, 0.5);
+    background: linear-gradient(135deg, var(--navy-mid) 0%, rgba(244, 107, 30, 0.08) 100%);
+  }
+  .price-card.june-offer:hover { border-color: var(--orange); }
+
+  .june-ribbon {
+    position: absolute;
+    top: 14px; right: -22px;
+    background: var(--orange);
+    color: var(--navy);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 28px;
+    transform: rotate(35deg);
+    white-space: nowrap;
+  }
+
+  .tier-cards.three-col { grid-template-columns: 1fr 1fr 1fr; }
+
+  @media (max-width: 900px) {
+    .tier-cards.three-col { grid-template-columns: 1fr 1fr; }
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -457,12 +485,12 @@
 
 <!-- NAV -->
 <nav>
-  <a href="tradefile-home.html" class="nav-logo">Trade<span>File</span>.ie</a>
+  <a href="index.html" class="nav-logo">Trade<span>File</span>.ie</a>
   <ul class="nav-links">
-    <li><a href="tradefile-home.html">Home</a></li>
+    <li><a href="index.html">Home</a></li>
     <li><a href="tradefile-pricing.html">Pricing</a></li>
     <li><a href="tradefile-terms.html">T&Cs</a></li>
-    <li><a href="tradefile-pricing.html" class="nav-cta">Get Started</a></li>
+    <li><a href="https://buy.stripe.com/fZueVgb2aaxKfd825g3sI06" class="nav-cta">Get Started</a></li>
   </ul>
 </nav>
 
@@ -491,14 +519,23 @@
   <!-- STARTER -->
   <div class="tier-label">Starter — Up to 30 documents per month</div>
   <div class="tier">
-    <div class="tier-cards">
+    <div class="tier-cards three-col">
+      <div class="price-card june-offer">
+        <div class="june-ribbon">June Offer</div>
+        <div class="card-billing monthly">🎁 First Month Free</div>
+        <h3>Starter</h3>
+        <div class="price-amount monthly">€0<span>/1st mo</span></div>
+        <div class="price-docs">Up to 30 documents/month</div>
+        <div class="price-note">Then €59/month — cancel anytime with one month's notice</div>
+        <a href="https://buy.stripe.com/3cI00meem9tG7KG11c3sI05" class="btn-primary monthly">Claim Free Month</a>
+      </div>
       <div class="price-card">
         <div class="card-billing monthly">Monthly</div>
         <h3>Starter</h3>
         <div class="price-amount monthly">€59<span>/mo</span></div>
         <div class="price-docs">Up to 30 documents/month</div>
         <div class="price-note">Cancel anytime with one month's notice</div>
-        <a href="#" class="btn-primary monthly">Get Started</a>
+        <a href="https://buy.stripe.com/fZueVgb2aaxKfd825g3sI06" class="btn-primary monthly">Get Started</a>
       </div>
       <div class="price-card yearly">
         <div class="card-billing yearly">Yearly <span class="save-badge">Save 2 months</span></div>
@@ -506,7 +543,7 @@
         <div class="price-amount yearly">€590<span>/yr</span></div>
         <div class="price-docs">Up to 30 documents/month</div>
         <div class="price-note">Equivalent to €49.17/month — auto-renews annually</div>
-        <a href="#" class="btn-primary yearly">Get Started</a>
+        <a href="https://buy.stripe.com/cNidRc9Y621efd84do3sI04" class="btn-primary yearly">Get Started</a>
       </div>
     </div>
   </div>
@@ -523,7 +560,7 @@
         <div class="price-amount monthly">€89<span>/mo</span></div>
         <div class="price-docs">Up to 60 documents/month</div>
         <div class="price-note">Cancel anytime with one month's notice</div>
-        <a href="#" class="btn-primary monthly">Get Started</a>
+        <a href="https://buy.stripe.com/fZufZk0nwdJW8OKbFQ3sI03" class="btn-primary monthly">Get Started</a>
       </div>
       <div class="price-card yearly">
         <div class="card-billing yearly">Yearly <span class="save-badge">Save 2 months</span></div>
@@ -531,7 +568,7 @@
         <div class="price-amount yearly">€890<span>/yr</span></div>
         <div class="price-docs">Up to 60 documents/month</div>
         <div class="price-note">Equivalent to €74.17/month — auto-renews annually</div>
-        <a href="#" class="btn-primary yearly">Get Started</a>
+        <a href="https://buy.stripe.com/4gM6oKeemdJW6GCh0a3sI02" class="btn-primary yearly">Get Started</a>
       </div>
     </div>
   </div>
@@ -548,7 +585,7 @@
         <div class="price-amount monthly">€119<span>/mo</span></div>
         <div class="price-docs">Up to 100 documents/month</div>
         <div class="price-note">Cancel anytime with one month's notice</div>
-        <a href="#" class="btn-primary monthly">Get Started</a>
+        <a href="https://buy.stripe.com/4gM8wS1rA0Xae944do3sI01" class="btn-primary monthly">Get Started</a>
       </div>
       <div class="price-card yearly">
         <div class="card-billing yearly">Yearly <span class="save-badge">Save 2 months</span></div>
@@ -556,7 +593,7 @@
         <div class="price-amount yearly">€1,190<span>/yr</span></div>
         <div class="price-docs">Up to 100 documents/month</div>
         <div class="price-note">Equivalent to €99.17/month — auto-renews annually</div>
-        <a href="#" class="btn-primary yearly">Get Started</a>
+        <a href="https://buy.stripe.com/aFa14q2vE6hu4yu25g3sI00" class="btn-primary yearly">Get Started</a>
       </div>
     </div>
   </div>
@@ -601,9 +638,9 @@
 
 <!-- FOOTER -->
 <footer>
-  <a href="tradefile-home.html" class="footer-logo">Trade<span>File</span>.ie</a>
+  <a href="index.html" class="footer-logo">Trade<span>File</span>.ie</a>
   <ul class="footer-links">
-    <li><a href="tradefile-home.html">Home</a></li>
+    <li><a href="index.html">Home</a></li>
     <li><a href="tradefile-pricing.html">Pricing</a></li>
     <li><a href="tradefile-terms.html">T&Cs</a></li>
     <li><a href="tradefile-privacy.html">Privacy Policy</a></li>
